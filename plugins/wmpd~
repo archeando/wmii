@@ -1,0 +1,28 @@
+# MPD
+mpd() {
+  if [ `mpc status | grep playing | wc -l` -eq 1 ]; then
+    echo -n label '>' `mpc status | head -n 1`
+  else
+    if [ `mpc status | grep paused | wc -l` -eq 1 ]; then
+      echo -n label '||' `mpc status | head -n 1`
+    else
+      echo -n label mpd
+    fi
+  fi
+}
+
+local_events | wi_events
+wi_events <<'!'
+Action mpd
+	set +xv
+	if wmiir remove /rbar/mpd 2>/dev/null; then
+		sleep 2
+	fi
+	echo colors "$WMII_NORMCOLORS" | wmiir create /rbar/mpd
+	while mpd | wmiir write /rbar/mpd; do
+		sleep 1
+	done
+!
+
+#añadir widget
+#action mpd &

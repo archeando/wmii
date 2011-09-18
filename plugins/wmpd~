@@ -22,23 +22,8 @@ Action mpd
 	while mpd | wmiir write /rbar/mpd; do
 		sleep 1
 	done
-
 Event RightBarMouseDown           # RightBarMouseDown <Button> <Bar Name>
-	if [ "$2" = "mpd" ]; then	  # Which widget
-		case $1 in
-		1)
-			mpc -q toggle
-			mpd | wmiir write /rbar/mpd;;
-		3)
-			eval wmiir setsid $WMII_TERM -e ncmpcpp &;;
-                4)
-                        mpc -q prev
-                        mpd | wmiir write /rbar/mpd;;
-                5)
-                        mpc -q next
-                        mpd | wmiir write /rbar/mpd;;
-                esac;
-	fi
+	if [ "$2" = "mpd" ]	  # Which widget
 
 !
 

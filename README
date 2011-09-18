@@ -4,5 +4,9 @@ Configuración y plugins para WMII-HG
 
 Plugins:
 
+* mpd : requerimientos:
+
 mpd
+mpc
+ncmpcpp
 

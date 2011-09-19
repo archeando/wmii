@@ -126,7 +126,6 @@ startup() {
 	obmixer &
 	dropboxd &
 	thunar --daemon &
-	gmpc -h &
 }
 
 local_events() { true;}

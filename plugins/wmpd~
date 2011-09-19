@@ -1,16 +1,11 @@
 #
 #
 # MPD
-#
-# Click mpd widget
-#   * Left mouse        - toggle play pause
-#   * Right click       - open ncmpcpp
-#   * Scroll            - change song
 # KEYS:
-#   * MOD+CONTROL+LEFT  - change previous song
-#   * MOD+CONTROL+RIGHT - change next song
-#   * MOD+CONTROL+p     - toggle play pause
-#   * MOD+CONTROL+s     - stop
+#MOD+CONTROL+LEFT
+#MOD+CONTROL+RIGHT
+#MOD+CONTROL+p
+#MOD+CONTROL+s
 #
 #
 
@@ -57,7 +52,7 @@ Event RightBarMouseDown           # RightBarMouseDown <Button> <Bar Name>
 	fi
 
 KeyGroup MPD
-Key $MODKEY-Control-p
+Key $MODKEY-Control-<
         mpc -q toggle; 
 	mpd | wmiir write /rbar/mpd;
 Key $MODKEY-Control-s

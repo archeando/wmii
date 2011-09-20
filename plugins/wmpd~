@@ -26,6 +26,7 @@ mpd() {
   fi
 }
 
+local_events | wi_events
 wi_events <<'!'
 Action mpd
 	set +xv
@@ -69,4 +70,3 @@ Key $MODKEY-Control-$RIGHT # Change next song
         mpc -q next;
         mpd | wmiir write /rbar/mpd;
 !
-wi_events -e

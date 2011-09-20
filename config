@@ -1,0 +1,55 @@
+#
+#View Names
+#
+export _VIEW0='[0]'
+export _VIEW1='[1]'
+export _VIEW2='[2]Web'
+export _VIEW3='[3]Correo'
+export _VIEW4='[4]Chat'
+export _VIEW5='[5]Video'
+export _VIEW6='[6]'
+export _VIEW7='[7]'
+export _VIEW8='[8]'
+export _VIEW9='[9]'
+
+
+#
+# Colors and font
+#
+# Colors tuples: "<text> <background> <border>"
+export WMII_FOCUSCOLORS='#ffffff #153F1F #2A7F3F'
+export WMII_BACKGROUND='#333333'
+export WMII_NORMCOLORS='#222222 #5FBF77 #2A7F3F'
+
+export WMII_FONT='-*-fixed-medium-r-*-*-13-*-*-*-*-*-*-*'
+
+#
+# Terminal for MOD+Enter
+#
+export WMII_TERM="gnome-terminal"
+
+#
+# Position of bar
+#
+_POSITION_BAR=bottom # Values: bottom, top
+
+#
+#Wallpaer
+#requires feh
+#
+export _WALLPAPER="~/Pictures/background.jpg"
+
+#
+#plugins
+#
+export ADD_MPD=1  #1: Enable plugin mpd, 0: Disable plugin mpd
+export ADD_WRESIZE=1 #1: Enable plugin, 0: Disable
+
+#
+# Configuration Keys
+#
+MODKEY=Mod4
+UP=k
+DOWN=j
+LEFT=h
+RIGHT=l

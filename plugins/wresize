@@ -1,0 +1,20 @@
+wi_events <<'!'
+Key $MODKEY-Control-Left
+	wmiir xwrite /tag/sel/ctl grow sel sel left
+Key $MODKEY-Shift-Left
+	wmiir xwrite /tag/sel/ctl nudge sel sel left
+Key $MODKEY-Control-Right
+	wmiir xwrite /tag/sel/ctl grow sel sel right
+Key $MODKEY-Shift-Right
+	wmiir xwrite /tag/sel/ctl nudge sel sel right
+Key $MODKEY-Control-Up
+	wmiir xwrite /tag/sel/ctl grow sel sel up -1
+Key $MODKEY-Shift-Up
+	wmiir xwrite /tag/sel/ctl nudge sel sel up
+Key $MODKEY-Control-Down
+	wmiir xwrite /tag/sel/ctl grow sel sel down
+Key $MODKEY-Shift-Down
+	wmiir xwrite /tag/sel/ctl nudge sel sel down
+!
+wi_events -e
+

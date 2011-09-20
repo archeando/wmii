@@ -1,0 +1,30 @@
+
+# <h/j/k/l>   grows the window in the given direction
+# C-<h/j/k/l> shrinks the window in the given direction
+# S-<h/j/k/l> moves the window in the given direction
+
+#esto hay que revisarlo, no funciona
+
+wi_events <<'!'
+Key $MODKEY-Control-r
+        (
+            . wmii.sh
+            for i in "'' grow" "Control- grow -1" "Shift- nudge"; do
+                eval "set -- $i"; mod=$1; cmd=$2; shift 2
+wi_events <<'!'
+Key Escape
+	exit
+Key $mod-$LEFT
+	wmiir xwrite /tag/sel/ctl $cmd sel sel left $*
+Key $mod-$RIGHT
+	wmiir xwrite /tag/sel/ctl $cmd sel sel right $*
+Key $mod-$UP
+	wmiir xwrite /tag/sel/ctl $cmd sel sel up $*
+Key $mod-$DOWN
+	wmiir xwrite /tag/sel/ctl $cmd sel sel down $*
+!
+done
+wi_events -e
+wi_eventloop
+        ) & 
+!

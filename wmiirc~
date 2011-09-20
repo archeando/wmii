@@ -3,11 +3,10 @@
 wmiiscript=wmiirc # For wmii.sh
 . wmii.sh
 
-# Load initial configuration
 wi_runconf -s config
 
 ####################################################################################
-#Inicio - Añadir nombres a las vistas 0..9 | Add names view
+#Inicio - Añadir nombres a las vistas 0..9
 #
 
 #Creamos la lista
@@ -30,6 +29,20 @@ noticebar=/rbar/!notice
 # Colors tuples: "<text> <background> <border>"
 # export WMII_NORMCOLORS='#000000 #c1c48b #81654f'
 # export WMII_FOCUSCOLORS='#000000 #81654f #000000'
+
+# export WMII_BACKGROUND='#333333'
+# export WMII_FONT='-*-fixed-medium-r-*-*-13-*-*-*-*-*-*-*'
+
+# tema verde y gris
+#export WMII_FOCUSCOLORS='#54FF54 #000000 #73A5FF'
+#export WMII_BACKGROUND='#000000'
+#export WMII_NORMCOLORS='#A8A8A8 #000000 #A07040'
+#export WMII_FONT='*-fixed-medium-r-*-*-13-*-*-*-*-*-*-*'
+
+#matrix
+#WMII_NORMCOLORS='#00cc00 #000000 #00cc00'
+#WMII_FOCUSCOLORS='#000000 #00cc00 #00cc00'
+#WMII_BACKGROUND='#000000'
 
 set -- $(echo $WMII_NORMCOLORS $WMII_FOCUSCOLORS)
 
@@ -72,7 +85,6 @@ wmiir write /rules <<!
     /^ROX-Filer:/ group=0
 
     # añadiendo etiquetas
-    /Nautilus/ floating=on
     /terminal/ tags=`getviewname 1`
     /^evolution:/ tags=`getviewname 3`
     /^thunar:Thunar:Progreso de operaci*/ floating=on
@@ -95,30 +107,17 @@ startup() {
 	evolution &
 	nm-applet &
 	obmixer &
-	liferea &
 	dropboxd &
 	thunar --daemon &
 }
 
 local_events() { true;}
-
 wi_runconf -s wmiirc_local
+wi_runconf -s ~/.wmii-hg/plugins/wmpd
+# wmiir xwrite /ctl spawn plugins/wmpd
 
-#
-# Load enable plugins
-#
-if [ "$ADD_WRESIZE" = "1" ]; then 
-        wi_runconf -s ~/.wmii-hg/plugins/wresize
-fi
+echo colors $WMII_NORMCOLORS | wmiir create $noticebar
 
-if [ "$ADD_MPD" = "1" ]; then 
-	wi_runconf -s ~/.wmii-hg/plugins/wmpd
-fi
-#
-# End Load enable plugins
-#
-
-# echo colors $WMII_NORMCOLORS | wmiir create $noticebar
 
 # Event processing
 local_events | wi_events
@@ -288,7 +287,6 @@ Key $MODKEY-Shift-$i     # Retag selected client with the numbered tag
 	wmiir xwrite /client/sel/ctl tags "`getviewname $i`"
 !
 done
-
 wi_events -e
 
 # WM Configuration
@@ -298,7 +296,6 @@ wmiir write /ctl <<!
 	normcolors $WMII_NORMCOLORS
 	grabmod $MODKEY
 	border 1
-	bar on $_POSITION_BAR
 !
 xsetroot -solid "$WMII_BACKGROUND" &
 eval wmiir setsid "feh --bg-center " $_WALLPAPER &
@@ -309,9 +306,11 @@ startup
 progsfile="$(wmiir namespace)/.proglist"
 action status &
 wi_proglist $PATH >$progsfile &
-
 #renombrar primera tags
 wmiir xwrite /ctl view "`getviewname 1`"
+
+#añadir widget
+action mpd &
 
 # Setup Tag Bar
 IFS="$wi_newline"
@@ -329,10 +328,6 @@ do
 	fi | wmiir create "/lbar/$tag"
 done
 
-#Add widgets
-if [ "$ADD_MPD" = "1" ]; then 
-	action mpd &
-fi
-
 wi_eventloop
+
 

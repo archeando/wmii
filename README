@@ -19,6 +19,14 @@ KEYS:
    * MOD+CONTROL+p     - toggle play pause
    * MOD+CONTROL+s     - stop
 ********************************************************************************
+********************************************************************************
+* Resize
+   * MOD+Up/Down/Left/Right          - moves the window in the given direction
+   * MOD+Control+Up/Down/Left/Right  - grows the window in the given direction
+   * MOD+Shift+Up/Down/Left/Right    - shrinks the window in the given direction
+
+
+********************************************************************************
 
 License
 =======

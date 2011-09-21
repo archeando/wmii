@@ -1,5 +1,6 @@
 #!/bin/dash -f
 # Configure wmii
+WMII_CONFPATH=~/.wmii-hg
 wmiiscript=wmiirc # For wmii.sh
 . wmii.sh
 
@@ -102,18 +103,24 @@ startup() {
 
 local_events() { true;}
 
-wi_runconf -s wmiirc_local
+## wi_runconf -s wmiirc_local
 
 #
 # Load enable plugins
 #
 if [ "$ADD_WRESIZE" = "1" ]; then 
-        wi_runconf -s ~/.wmii-hg/plugins/wresize
+        wi_runconf -s $WMII_CONFPATH/plugins/wresize
 fi
 
+#pendiente de arreglar
+#if [ "$ADD_WRESIZE2" = "1" ]; then
+#	wi_runconf -s ~/.wmii-hg/plugins/wresize2
+#fi
+
 if [ "$ADD_MPD" = "1" ]; then 
-	wi_runconf -s ~/.wmii-hg/plugins/wmpd
+	wi_runconf -s $WMII_CONFPATH/plugins/wmpd
 fi
+
 #
 # End Load enable plugins
 #

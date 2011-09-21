@@ -34,16 +34,18 @@ export WMII_TERM="gnome-terminal"
 _POSITION_BAR=bottom # Values: bottom, top
 
 #
-#Wallpaer
-#requires feh
+# Wallpaer
+# requires feh
 #
 export _WALLPAPER="~/Pictures/background.jpg"
 
 #
-#plugins
+# plugins
 #
-export ADD_MPD=1  #1: Enable plugin mpd, 0: Disable plugin mpd
-export ADD_WRESIZE=1 #1: Enable plugin, 0: Disable
+# 1: enable, 0: diable
+ADD_MPD=1 
+ADD_WRESIZE=1
+ADD_WRESIZE2=1 
 
 #
 # Configuration Keys

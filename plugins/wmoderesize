@@ -1,0 +1,47 @@
+
+# <h/j/k/l>  movesthe window in the given direction
+# C-<h/j/k/l> grows the window in the given direction
+# S-<h/j/k/l> shrinks the window in the given direction
+
+#esto hay que revisarlo, no funciona
+#!/bin/dash -f
+
+wmoderesize() {
+KEYS_WRESIZE="Escape\nControl-$LEFT\nControl-$RIGHT\nControl-$UP\nControl-$DOWN\nShift-$LEFT\nShift-$RIGHT\nShift-$UP\nShift-$DOWN\n$RIGHT\n$LEFT\n$UP\n$DOWN\n"
+ 	echo $KEYS_WRESIZE | wmiir write /keys
+	# Turn off globbing
+	set -f
+	wmiir read /event |
+	while read line; do
+	     set -- $line
+	     event=$1;shift
+	     line = "$(echo $line )"  #| sed 's/^[^ ]* //' | tr -d '\n')"
+	     case $event in
+	     Key)
+		case $1 in
+		    Escape) break ;;
+                    Control-$LEFT) wmiir xwrite /tag/sel/ctl grow sel sel left ;;
+		    Control-$RIGHT) wmiir xwrite /tag/sel/ctl grow sel sel right ;;
+		    Control-$UP) wmiir xwrite /tag/sel/ctl grow sel sel up ;;
+		    Control-$DOWN) wmiir xwrite /tag/sel/ctl grow sel sel down ;;
+		    Shift-$LEFT) wmiir xwrite /tag/sel/ctl grow sel sel left -1 ;;
+		    Shift-$RIGHT) wmiir xwrite /tag/sel/ctl grow sel sel right -1 ;;
+	            Shift-$UP) wmiir xwrite /tag/sel/ctl grow sel sel up -1 ;;
+	 	    Shift-$DOWN)  wmiir xwrite /tag/sel/ctl grow sel sel down -1 ;;
+		    $LEFT) wmiir xwrite /tag/sel/ctl nudge sel sel left ;;
+		    $RIGHT) wmiir xwrite /tag/sel/ctl nudge sel sel right ;;
+		    $UP) wmiir xwrite /tag/sel/ctl nudge sel sel up ;;
+		    $DOWN) wmiir xwrite /tag/sel/ctl nudge sel sel down ;;
+	        esac;;
+	    esac
+	done
+	echo -n "$Keys" | wmiir write /keys
+}
+
+wi_events <<'!'
+Key $MODKEY-Control-r
+	wmoderesize &
+!
+
+wi_events -e
+

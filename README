@@ -2,8 +2,8 @@ Configuración y plugins para WMII-HG
 
 Plugins:
 
-******************************************************************************
-* mpd                                                                        *   
+***********************************************************************************
+* mpd - Add "action" mpd                                                          *   
 Requires:
         * mpd
         * mpc
@@ -18,15 +18,34 @@ KEYS:
    * MOD+CONTROL+RIGHT - change next song
    * MOD+CONTROL+p     - toggle play pause
    * MOD+CONTROL+s     - stop
-********************************************************************************
-********************************************************************************
-* Resize
-   * MOD+Up/Down/Left/Right          - moves the window in the given direction
-   * MOD+Control+Up/Down/Left/Right  - grows the window in the given direction
-   * MOD+Shift+Up/Down/Left/Right    - shrinks the window in the given direction
+EXECUTE
+   * action mpd
+   * Control+a and type mpd
+*                                                                                 *
+***********************************************************************************
 
+***********************************************************************************
+* wresize - Resize windows with the keyboard (using arrows)                      *
+KEYS:
 
-********************************************************************************
+   * MOD+<↑/↓/←/→>          - moves the window in the given direction
+   * MOD+Control+<↑/↓/←/→>  - grows the window in the given direction
+   * MOD+Shift+<↑/↓/←/→>    - shrinks the window in the given direction
+
+*                                                                                 *
+***********************************************************************************
+
+***********************************************************************************
+* wmoderesize - Resize windows with the keyboard (using defined keys for movement)* 
+* default:UP=k DOWN=j LEFT=h RIGHT=l 
+KEYS
+   * MOD+Control+r                - enter resize mode
+   * Escape                       - exit resize mode
+   * <LEFT/RIGHT/UP/DOWN>         - moves the window in the given direction
+   * Control-<LEFT/RIGHT/UP/DOWN> - grows the window in the given direction
+   * Shift-<LEFT/RIGHT/UP/DOWN>   - shrinks the window in the given direction
+*                                                                                 *
+***********************************************************************************
 
 License
 =======

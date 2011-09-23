@@ -45,7 +45,7 @@ export _WALLPAPER="~/Pictures/background.jpg"
 # 1: enable, 0: diable
 ADD_MPD=1 
 ADD_WRESIZE=1
-ADD_WRESIZE2=1 
+ADD_WMODERESIZE=1
 
 #
 # Configuration Keys

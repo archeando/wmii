@@ -3,31 +3,31 @@
 wi_events <<'!'
 #grows the window in the given direction
 Key $MODKEY-Control-Left
-	wmiir xwrite /tag/sel/ctl grow sel sel left
+        wmiir xwrite /tag/sel/ctl grow sel sel left
 Key $MODKEY-Control-Right
-	wmiir xwrite /tag/sel/ctl grow sel sel right
+        wmiir xwrite /tag/sel/ctl grow sel sel right
 Key $MODKEY-Control-Up
-	wmiir xwrite /tag/sel/ctl grow sel sel up
+        wmiir xwrite /tag/sel/ctl grow sel sel up
 Key $MODKEY-Control-Down
-	wmiir xwrite /tag/sel/ctl grow sel sel down
+        wmiir xwrite /tag/sel/ctl grow sel sel down
 # shrinks the window in the given direction
 Key $MODKEY-Shift-Left
-	wmiir xwrite /tag/sel/ctl grow sel sel left -1
+        wmiir xwrite /tag/sel/ctl grow sel sel left -1
 Key $MODKEY-Shift-Right
-	wmiir xwrite /tag/sel/ctl grow sel sel right -1
+        wmiir xwrite /tag/sel/ctl grow sel sel right -1
 Key $MODKEY-Shift-Up
-	wmiir xwrite /tag/sel/ctl grow sel sel up -1
+        wmiir xwrite /tag/sel/ctl grow sel sel up -1
 Key $MODKEY-Shift-Down
-	wmiir xwrite /tag/sel/ctl grow sel sel down -1
+        wmiir xwrite /tag/sel/ctl grow sel sel down -1
 # moves the window in the given direction
 Key $MODKEY-Left
-	wmiir xwrite /tag/sel/ctl nudge sel sel left
+        wmiir xwrite /tag/sel/ctl nudge sel sel left
 Key $MODKEY-Right
-	wmiir xwrite /tag/sel/ctl nudge sel sel right
+        wmiir xwrite /tag/sel/ctl nudge sel sel right
 Key $MODKEY-Up
-	wmiir xwrite /tag/sel/ctl nudge sel sel up
+        wmiir xwrite /tag/sel/ctl nudge sel sel up
 Key $MODKEY-Down
-	wmiir xwrite /tag/sel/ctl nudge sel sel down
+        wmiir xwrite /tag/sel/ctl nudge sel sel down
 !
 
 wi_events -e

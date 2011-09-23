@@ -113,9 +113,9 @@ if [ "$ADD_WRESIZE" = "1" ]; then
 fi
 
 #pendiente de arreglar
-#if [ "$ADD_WRESIZE2" = "1" ]; then
-#	wi_runconf -s ~/.wmii-hg/plugins/wresize2
-#fi
+if [ "$ADD_WMODERESIZE" = "1" ]; then
+	wi_runconf -s $WMII_CONFPATH/plugins/wmoderesize
+fi
 
 if [ "$ADD_MPD" = "1" ]; then 
 	wi_runconf -s $WMII_CONFPATH/plugins/wmpd
@@ -128,7 +128,7 @@ fi
 # echo colors $WMII_NORMCOLORS | wmiir create $noticebar
 
 # Event processing
-local_events | wi_events
+#local_events | wi_events
 wi_events <<'!'
 # Events
 Event CreateTag

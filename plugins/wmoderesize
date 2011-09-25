@@ -1,10 +1,7 @@
-
-# <h/j/k/l>  movesthe window in the given direction
+#!/bin/dash -f
+# <h/j/k/l>  moves the window in the given direction
 # C-<h/j/k/l> grows the window in the given direction
 # S-<h/j/k/l> shrinks the window in the given direction
-
-#esto hay que revisarlo, no funciona
-#!/bin/dash -f
 
 wmoderesize() {
 KEYS_WRESIZE="Escape\nControl-$LEFT\nControl-$RIGHT\nControl-$UP\nControl-$DOWN\nShift-$LEFT\nShift-$RIGHT\nShift-$UP\nShift-$DOWN\n$RIGHT\n$LEFT\n$UP\n$DOWN\n"
@@ -42,6 +39,4 @@ wi_events <<'!'
 Key $MODKEY-Control-r
 	wmoderesize &
 !
-
-wi_events -e
 

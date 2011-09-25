@@ -30,6 +30,4 @@ Key $MODKEY-Down
         wmiir xwrite /tag/sel/ctl nudge sel sel down
 !
 
-wi_events -e
-
 

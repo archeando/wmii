@@ -70,5 +70,3 @@ Key $MODKEY-Control-$RIGHT # Change next song
         mpd | wmiir write /rbar/mpd;
 
 !
-
-wi_events -e

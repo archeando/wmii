@@ -28,10 +28,6 @@ getviewname(){
 noticetimeout=5
 noticebar=/rbar/!notice
 
-# Colors tuples: "<text> <background> <border>"
-# export WMII_NORMCOLORS='#000000 #c1c48b #81654f'
-# export WMII_FOCUSCOLORS='#000000 #81654f #000000'
-
 set -- $(echo $WMII_NORMCOLORS $WMII_FOCUSCOLORS)
 
 # Ask about MODKEY on first run
@@ -80,7 +76,6 @@ wmiir write /rules <<!
     /:Firefox:/ tags=`getviewname 2`
 !
 
-
 # Status Bar Info
 status() {
 	# echo -n label $(uptime | sed 's/.*://; s/, / /g') '|' $(date)
@@ -103,8 +98,6 @@ startup() {
 
 local_events() { true;}
 
-## wi_runconf -s wmiirc_local
-
 #
 # Load enable plugins
 #
@@ -112,7 +105,6 @@ if [ "$ADD_WRESIZE" = "1" ]; then
         wi_runconf -s $WMII_CONFPATH/plugins/wresize
 fi
 
-#pendiente de arreglar
 if [ "$ADD_WMODERESIZE" = "1" ]; then
 	wi_runconf -s $WMII_CONFPATH/plugins/wmoderesize
 fi
@@ -122,13 +114,19 @@ if [ "$ADD_MPD" = "1" ]; then
 fi
 
 #
-# End Load enable plugins
+# End load pugins
 #
 
-# echo colors $WMII_NORMCOLORS | wmiir create $noticebar
+#
+# Load local conf
+#
+wi_runconf -s wmiirc_local
+
+echo colors $WMII_NORMCOLORS | wmiir create $noticebar
 
 # Event processing
-#local_events | wi_events
+local_events | wi_events
+
 wi_events <<'!'
 # Events
 Event CreateTag
@@ -207,7 +205,6 @@ Action status
 	while status | wmiir write /rbar/status; do
 		sleep 1
 	done
-
 
 # Key Bindings
 KeyGroup Moving around
@@ -296,6 +293,9 @@ Key $MODKEY-Shift-$i     # Retag selected client with the numbered tag
 !
 done
 
+#
+# saving events (including events that are defined in the plugins and wmiirc_local)
+#
 wi_events -e
 
 # WM Configuration
@@ -310,7 +310,6 @@ wmiir write /ctl <<!
 xsetroot -solid "$WMII_BACKGROUND" &
 eval wmiir setsid "feh --bg-center " $_WALLPAPER &
 startup
-
 
 # Misc
 progsfile="$(wmiir namespace)/.proglist"

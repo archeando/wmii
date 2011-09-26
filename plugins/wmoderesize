@@ -4,8 +4,21 @@
 # S-<h/j/k/l> shrinks the window in the given direction
 
 wmoderesize() {
-KEYS_WRESIZE="Escape\nControl-$LEFT\nControl-$RIGHT\nControl-$UP\nControl-$DOWN\nShift-$LEFT\nShift-$RIGHT\nShift-$UP\nShift-$DOWN\n$RIGHT\n$LEFT\n$UP\n$DOWN\n"
- 	echo $KEYS_WRESIZE | wmiir write /keys
+	{ 
+	   echo Escape
+	   echo Control-$LEFT
+	   echo Control-$RIGHT
+	   echo Control-$UP
+	   echo Control-$DOWN
+	   echo Shift-$LEFT
+	   echo Shift-$RIGHT
+	   echo Shift-$UP
+	   echo Shift-$DOWN
+	   echo $RIGHT
+	   echo $LEFT
+	   echo $UP
+	   echo $DOWN
+	} | wmiir write /keys
 	# Turn off globbing
 	set -f
 	wmiir read /event |
@@ -16,7 +29,7 @@ KEYS_WRESIZE="Escape\nControl-$LEFT\nControl-$RIGHT\nControl-$UP\nControl-$DOWN\
 	     case $event in
 	     Key)
 		case $1 in
-		    Escape) break ;;
+		    Escape) echo -n "$Keys" | wmiir write /keys ; break ;;
                     Control-$LEFT) wmiir xwrite /tag/sel/ctl grow sel sel left ;;
 		    Control-$RIGHT) wmiir xwrite /tag/sel/ctl grow sel sel right ;;
 		    Control-$UP) wmiir xwrite /tag/sel/ctl grow sel sel up ;;
@@ -32,7 +45,6 @@ KEYS_WRESIZE="Escape\nControl-$LEFT\nControl-$RIGHT\nControl-$UP\nControl-$DOWN\
 	        esac;;
 	    esac
 	done
-	echo -n "$Keys" | wmiir write /keys
 }
 
 wi_events <<'!'

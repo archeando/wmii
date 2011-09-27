@@ -59,28 +59,6 @@ wmiir write /colrules <<!
 #
 tagrules | wmiir write /rules
 
-#wmiir write /rules <<!
-#    # Apps with system tray icons like to their main windows
-#    # Give them permission.
-#    /^Pidgin:|^Empathy:|^skype:/ tags=`getviewname 4` floating=on allow=+activate 
-#    
-#    # MPlayer and VLC don't float by default, but should.
-#    /MPlayer|VLC|Totem/ floating=on tags=`getviewname 5`
-#    /JDownloader/ floating=on
-#
-#    # ROX puts all of its windows in the same group, so they open
-#    # with the same tags.  Disable grouping for ROX Filer.
-#    /^ROX-Filer:/ group=0
-#
-#    # Adding tags
-#    /Nautilus/ floating=on
-#    /terminal/ tags=sel+`getviewname 1`
-#    /^evolution:/ tags=`getviewname 3`
-#    /^thunar:Thunar:Progreso de operaci*/ floating=on
-#    /:Firefox:/ tags=`getviewname 2`
-#!
-
-
 # Status Bar Info
 status() {
 	echo -n label $(date '+%a %b %d %H:%M:%S')

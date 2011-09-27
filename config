@@ -1,4 +1,13 @@
 #
+# Configuration Keys
+#
+MODKEY=Mod4
+UP=k
+DOWN=j
+LEFT=h
+RIGHT=l
+
+#
 #View Names
 #
 export _VIEW0='[0]'
@@ -11,7 +20,6 @@ export _VIEW6='[6]'
 export _VIEW7='[7]'
 export _VIEW8='[8]'
 export _VIEW9='[9]'
-
 
 #
 # Colors and font
@@ -40,6 +48,21 @@ _POSITION_BAR=bottom # Values: bottom, top
 export _WALLPAPER="~/Pictures/background.jpg"
 
 #
+# autostart
+#
+autostart () {
+	arranque & 
+	pulseaudio --start &
+	pidgin &
+	evolution &
+	nm-applet &
+	obmixer &
+	liferea &
+	dropboxd &
+	thunar --daemon &
+}
+
+#
 # plugins
 #
 # 1: enable, 0: diable
@@ -47,11 +70,29 @@ ADD_MPD=1
 ADD_WRESIZE=1
 ADD_WMODERESIZE=1
 
+
 #
-# Configuration Keys
+# Tagging Rules
 #
-MODKEY=Mod4
-UP=k
-DOWN=j
-LEFT=h
-RIGHT=l
+tagrules () {
+    # Apps with system tray icons like to their main windows
+    # Give them permission.
+echo "/^Pidgin:|^Empathy:|^skype:/ tags=`getviewname 4` floating=on allow=+activate"
+    
+    # MPlayer and VLC don't float by default, but should.
+echo "/MPlayer|VLC|Totem/ floating=on tags=`getviewname 5`"
+echo "/JDownloader/ floating=on"
+
+    # ROX puts all of its windows in the same group, so they open
+    # with the same tags.  Disable grouping for ROX Filer.
+echo "/^ROX-Filer:/ group=0"
+
+    # Adding tags
+echo "/Nautilus/ floating=on"
+echo "/terminal/ tags=sel+`getviewname 1`"
+echo "/^evolution:/ tags=`getviewname 3`"
+echo "/^thunar:Thunar:Progreso de operaci*/ floating=on"
+echo "/:Firefox:/ tags=`getviewname 2`"
+}
+
+

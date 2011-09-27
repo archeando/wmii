@@ -8,10 +8,10 @@ wmiiscript=wmiirc # For wmii.sh
 wi_runconf -s config
 
 ####################################################################################
-#Inicio - Añadir nombres a las vistas 0..9 | Add names view
+#Add names view
 #
 
-#Creamos la lista
+#Create views list
 VIEW_NAME="$_VIEW0 $_VIEW1 $_VIEW2 $_VIEW3 $_VIEW4 $_VIEW5 $_VIEW6 $_VIEW7 $_VIEW8 $_VIEW9"
 
 #función de selección
@@ -21,7 +21,7 @@ getviewname(){
 }
 
 #
-#Fin - Añadir nombres a las vistas 0..9
+#End add names views
 #####################################################################################
 
 # Bars
@@ -54,46 +54,41 @@ wmiir write /colrules <<!
     /.*/ -> 62+38 # Golden Ratio
 !
 
+#
 # Tagging Rules
-wmiir write /rules <<!
-    # Apps with system tray icons like to their main windows
-    # Give them permission.
-    /^Pidgin:|^Empathy:|^skype:/ tags=`getviewname 4` floating=on allow=+activate 
-    
-    # MPlayer and VLC don't float by default, but should.
-    /MPlayer|VLC|Totem/ floating=on tags=`getviewname 5`
-    /JDownloader/ floating=on
+#
+tagrules | wmiir write /rules
 
-    # ROX puts all of its windows in the same group, so they open
-    # with the same tags.  Disable grouping for ROX Filer.
-    /^ROX-Filer:/ group=0
+#wmiir write /rules <<!
+#    # Apps with system tray icons like to their main windows
+#    # Give them permission.
+#    /^Pidgin:|^Empathy:|^skype:/ tags=`getviewname 4` floating=on allow=+activate 
+#    
+#    # MPlayer and VLC don't float by default, but should.
+#    /MPlayer|VLC|Totem/ floating=on tags=`getviewname 5`
+#    /JDownloader/ floating=on
+#
+#    # ROX puts all of its windows in the same group, so they open
+#    # with the same tags.  Disable grouping for ROX Filer.
+#    /^ROX-Filer:/ group=0
+#
+#    # Adding tags
+#    /Nautilus/ floating=on
+#    /terminal/ tags=sel+`getviewname 1`
+#    /^evolution:/ tags=`getviewname 3`
+#    /^thunar:Thunar:Progreso de operaci*/ floating=on
+#    /:Firefox:/ tags=`getviewname 2`
+#!
 
-    # añadiendo etiquetas
-    /Nautilus/ floating=on
-    /terminal/ tags=`getviewname 1`
-    /^evolution:/ tags=`getviewname 3`
-    /^thunar:Thunar:Progreso de operaci*/ floating=on
-    /:Firefox:/ tags=`getviewname 2`
-!
 
 # Status Bar Info
 status() {
-	# echo -n label $(uptime | sed 's/.*://; s/, / /g') '|' $(date)
 	echo -n label $(date '+%a %b %d %H:%M:%S')
 }
 
 # Generic overridable startup details
 startup() {
 	witray &
-	arranque & 
-	pulseaudio --start &
-	pidgin &
-	evolution &
-	nm-applet &
-	obmixer &
-	liferea &
-	dropboxd &
-	thunar --daemon &
 }
 
 local_events() { true;}
@@ -310,6 +305,7 @@ wmiir write /ctl <<!
 xsetroot -solid "$WMII_BACKGROUND" &
 eval wmiir setsid "feh --bg-center " $_WALLPAPER &
 startup
+autostart
 
 # Misc
 progsfile="$(wmiir namespace)/.proglist"

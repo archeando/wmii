@@ -18,7 +18,7 @@ git clone git://github.com/zodiac66/wmii .wmii-hg
 * Config:                                                                         *
 For rules, theme, enable/disable plugins:
 
-edit ~/.wmii-hg/config edit the file and set the values ​​as needed.
+edit ~/.wmii-hg/config file and set the values ​​as needed.
 
 https://github.com/zodiac66/wmii/blob/master/config  is a real example
 *                                                                                 *

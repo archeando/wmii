@@ -29,12 +29,13 @@ export WMII_FOCUSCOLORS='#ffffff #153F1F #2A7F3F'
 export WMII_BACKGROUND='#333333'
 export WMII_NORMCOLORS='#222222 #5FBF77 #2A7F3F'
 
-export WMII_FONT='-*-fixed-medium-r-*-*-13-*-*-*-*-*-*-*'
+# export WMII_FONT='-*-fixed-medium-r-*-*-13-*-*-*-*-*-*-*'
+export WMII_FONT='xft:Sans-9'
 
 #
 # Terminal for MOD+Enter
 #
-export WMII_TERM="gnome-terminal"
+export WMII_TERM="urxvt"
 
 #
 # Position of bar
@@ -50,16 +51,18 @@ export _WALLPAPER="~/Pictures/background.jpg"
 #
 # autostart
 #
+
 autostart () {
+        ~/bin/init-gnome &
 	arranque & 
-	pulseaudio --start &
-	pidgin &
+	empathy -h &
 	evolution &
-	nm-applet &
 	obmixer &
 	liferea &
 	dropboxd &
 	thunar --daemon &
+	parcellite &
+	xcompmgr &
 }
 
 #
@@ -69,7 +72,7 @@ autostart () {
 ADD_MPD=1 
 ADD_WRESIZE=1
 ADD_WMODERESIZE=1
-
+ADD_IRSSI=1
 
 #
 # Tagging Rules
@@ -77,7 +80,8 @@ ADD_WMODERESIZE=1
 tagrules () {
     # Apps with system tray icons like to their main windows
     # Give them permission.
-echo "/^Pidgin:|^Empathy:|^skype:/ tags=`getviewname 4` floating=on allow=+activate"
+echo "/^Pidgin:|^empathy:|^skype:/ tags=`getviewname 4` floating=on allow=+activate"
+echo "/:Empathy:/ tags=sel floating=on"
     
     # MPlayer and VLC don't float by default, but should.
 echo "/MPlayer|VLC|Totem/ floating=on tags=`getviewname 5`"
@@ -89,9 +93,9 @@ echo "/^ROX-Filer:/ group=0"
 
     # Adding tags
 echo "/Nautilus/ floating=on"
-echo "/terminal/ tags=sel+`getviewname 1`"
+echo "/^gnome-terminal:|urxvt/ tags=sel+`getviewname 1`"
 echo "/^evolution:/ tags=`getviewname 3`"
-echo "/^thunar:Thunar:Progreso de operaci*/ floating=on"
+echo "/^thunar:Thunar:Progreso de operaci*|^thunar:Thunar:Fil*/ floating=on"
 echo "/:Firefox:/ tags=`getviewname 2`"
 }
 

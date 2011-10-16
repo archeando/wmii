@@ -86,6 +86,10 @@ if [ "$ADD_MPD" = "1" ]; then
 	wi_runconf -s $WMII_CONFPATH/plugins/wmpd
 fi
 
+if [ "$ADD_IRSSI" = "1" ]; then 
+	wi_runconf -s $WMII_CONFPATH/plugins/irssi
+fi
+
 #
 # End load pugins
 #

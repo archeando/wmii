@@ -8,9 +8,9 @@
 cd ~
 
 If exist:
-mv .wmii-hg .wmii-hg.backup
+mv ~/.wmii-hg ~/.wmii-hg.backup
 
-git clone git://github.com/zodiac66/wmii .wmii-hg
+git clone git://github.com/zodiac66/wmii ~/.wmii-hg
 
 *                                                                                 *
 ***********************************************************************************

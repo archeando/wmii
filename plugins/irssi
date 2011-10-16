@@ -1,0 +1,34 @@
+irssisi () { 
+	if [ $(wmiir read "/client/$*/label") = "irssi" ]; then
+		return true ;
+	else
+		return false ;
+	fi
+}
+
+#irssisi() { ~ `{wmiir read /client/$"*/label} irssi }
+
+clients () { 
+	wmiir ls /client | sed 's,/,,; /^sel$/d' 		
+}
+
+wi_events <<'!'
+Event IRCMessage
+           SHOWMESSAGEIRSSI=true # true, false
+	   
+           ( 
+             shift 1 ;
+	     if [ "$SHOWMESSAGEIRSSI" = "true" ]; then
+		{
+	           MSG="$*"
+	           while [ "$( wmiir ls /rbar | grep irssialert )" = "irssialert" ]; do
+		      sleep 1;
+	           done
+	           echo colors "$WMII_NORMCOLORS" | wmiir create /rbar/irssialert;
+                   echo -n label "$MSG" | wmiir write /rbar/irssialert ;
+	           sleep 8;
+	           wmiir remove /rbar/irssialert ;
+		}
+	    fi
+	    ) &
+!

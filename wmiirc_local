@@ -1,1 +1,4 @@
-
+wi_events <<'!'
+Key $MODKEY-i # Launch 'screen irssi' in gnome-terminal
+      eval wmiir setsid "irssit" &
+!
